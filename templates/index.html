@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chatbot for Farmers</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>🌾 AI Chatbot for Farmers</h1>
+
+    <div class="chat-box" id="chat-box">
+        <div class="bot-message">
+            👋 Hello Farmer! Ask me anything about farming.
+        </div>
+    </div>
+
+    <div class="input-area">
+
+        <input
+            type="text"
+            id="user-input"
+            placeholder="Type your question here...">
+
+        <button id="voice-btn">🎤</button>
+
+        <button id="send-btn">Send</button>
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>
