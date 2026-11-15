@@ -1,93 +1,94 @@
-// Get Elements
-const chatBox = document.getElementById("chat-box");
-const userInput = document.getElementById("user-input");
 const sendBtn = document.getElementById("send-btn");
+const input = document.getElementById("user-input");
+const chatBox = document.getElementById("chat-box");
 
-// Send button click
 sendBtn.addEventListener("click", sendMessage);
 
-// Enter key
-userInput.addEventListener("keypress", function (e) {
-    if (e.key === "Enter") {
+input.addEventListener("keypress", function(e){
+    if(e.key==="Enter"){
         sendMessage();
     }
 });
 
-// Function
-function sendMessage() {
+function getTime(){
 
-    let message = userInput.value.trim();
+    const now=new Date();
 
-    if (message === "") {
-        return;
-    }
-
-    // User Message
-    addMessage(message, "user");
-
-    // Clear Input
-    userInput.value = "";
-
-    // Dummy Bot Reply
-    setTimeout(() => {
-
-        let reply = getBotReply(message);
-
-        addMessage(reply, "bot");
-
-    }, 700);
+    return now.toLocaleTimeString([],{
+        hour:'2-digit',
+        minute:'2-digit'
+    });
 
 }
 
-// Add Message
-function addMessage(text, sender) {
+function addUserMessage(message){
 
-    let messageDiv = document.createElement("div");
+    chatBox.innerHTML += `
 
-    messageDiv.classList.add("message");
+    <div class="message user-message">
 
-    if (sender === "user") {
-        messageDiv.classList.add("user-message");
-    } else {
-        messageDiv.classList.add("bot-message");
-    }
+        <div class="bubble">
 
-    messageDiv.innerHTML = text;
+            <div class="name">You</div>
 
-    chatBox.appendChild(messageDiv);
+            ${message}
 
-    // Auto Scroll
-    chatBox.scrollTop = chatBox.scrollHeight;
+            <div class="time">${getTime()}</div>
+
+        </div>
+
+        <div class="avatar">👩</div>
+
+    </div>
+
+    `;
+
 }
 
-// Dummy AI
-function getBotReply(message) {
+function addBotMessage(message){
 
-    message = message.toLowerCase();
+    chatBox.innerHTML += `
 
-    if (message.includes("hello") || message.includes("hi")) {
-        return "👋 Hello Farmer! How can I help you today?";
-    }
+    <div class="message bot-message">
 
-    if (message.includes("cotton")) {
-        return "🌱 Cotton grows well in black soil with moderate rainfall.";
-    }
+        <div class="avatar">🤖</div>
 
-    if (message.includes("rice")) {
-        return "🌾 Rice requires plenty of water and fertile soil.";
-    }
+        <div class="bubble">
 
-    if (message.includes("wheat")) {
-        return "🌾 Wheat is usually grown during the Rabi season.";
-    }
+            <div class="name">AI Farmer</div>
 
-    if (message.includes("fertilizer")) {
-        return "🧪 Use fertilizer based on your soil test report.";
-    }
+            ${message}
 
-    if (message.includes("thank")) {
-        return "😊 You're welcome! Happy Farming.";
-    }
+            <div class="time">${getTime()}</div>
 
-    return "🤖 I am your AI Farmer Assistant. Flask AI integration will be added in the next step.";
+        </div>
+
+    </div>
+
+    `;
+
+}
+
+function scrollBottom(){
+
+    chatBox.scrollTop=chatBox.scrollHeight;
+
+}
+
+async function sendMessage(){
+
+    const question=input.value.trim();
+
+    if(question==="") return;
+
+    addUserMessage(question);
+
+    input.value="";
+
+    scrollBottom();
+
+    addBotMessage("Thinking...");
+
+    scrollBottom();
+
 }

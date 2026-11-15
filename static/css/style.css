@@ -271,3 +271,26 @@ max-width:90%;
 }
 
 }
+.time{
+
+    font-size:12px;
+
+    color:gray;
+
+    margin-top:8px;
+
+    text-align:right;
+
+}
+
+.user-message .bubble{
+
+    background:#DCF8C6;
+
+}
+
+.bot-message .bubble{
+
+    background:white;
+
+}
