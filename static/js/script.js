@@ -77,7 +77,7 @@ function scrollBottom(){
 
 async function sendMessage(){
 
-    const question=input.value.trim();
+    const question = input.value.trim();
 
     if(question==="") return;
 
@@ -87,7 +87,23 @@ async function sendMessage(){
 
     scrollBottom();
 
-    addBotMessage("Thinking...");
+    const response = await fetch("/chat",{
+
+        method:"POST",
+
+        headers:{
+            "Content-Type":"application/json"
+        },
+
+        body:JSON.stringify({
+            message:question
+        })
+
+    });
+
+    const data = await response.json();
+
+    addBotMessage(data.response);
 
     scrollBottom();
 
