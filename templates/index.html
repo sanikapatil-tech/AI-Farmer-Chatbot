@@ -3,34 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Chatbot for Farmers</title>
+    <title>AI Farmer Assistant</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
+
 <body>
 
-<div class="container">
+<div class="app">
 
-    <h1>🌾 AI Chatbot for Farmers</h1>
+    <!-- Sidebar -->
 
-    <div class="chat-box" id="chat-box">
-        <div class="bot-message">
-            👋 Hello Farmer! Ask me anything about farming.
+    <aside class="sidebar">
+
+        <div class="logo">
+            🌾 AI Farmer
         </div>
-    </div>
 
-    <div class="input-area">
+        <ul>
 
-        <input
-            type="text"
-            id="user-input"
-            placeholder="Type your question here...">
+            <li><i class="bi bi-plus-circle"></i> New Chat</li>
 
-        <button id="voice-btn">🎤</button>
+            <li><i class="bi bi-clock-history"></i> Chat History</li>
 
-        <button id="send-btn">Send</button>
+            <li><i class="bi bi-tree"></i> Crop Guide</li>
 
-    </div>
+            <li><i class="bi bi-droplet-half"></i> Fertilizer</li>
+
+            <li><i class="bi bi-bug"></i> Disease Detection</li>
+
+            <li><i class="bi bi-cloud-sun"></i> Weather</li>
+
+            <li><i class="bi bi-bank"></i> Govt Schemes</li>
+
+            <li><i class="bi bi-gear"></i> Settings</li>
+
+        </ul>
+
+    </aside>
+
+    <!-- Main -->
+
+    <main class="main">
+
+        <header class="header">
+
+            <div>
+
+                <h2>AI Chatbot for Farmers</h2>
+
+                <span class="status">
+                    🟢 AI Online
+                </span>
+
+            </div>
+
+            <div>
+
+                <select class="form-select">
+
+                    <option>English</option>
+                    <option>Marathi</option>
+                    <option>Hindi</option>
+
+                </select>
+
+            </div>
+
+        </header>
+
+        <section class="chat-area" id="chat-box">
+
+            <div class="message bot-message">
+
+                <div class="avatar">
+                    🤖
+                </div>
+
+                <div class="bubble">
+
+                    <div class="name">
+                        AI Farmer
+                    </div>
+
+                    Hello Farmer 👋<br>
+
+                    Welcome to AI Farmer Assistant.
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <footer class="chat-input">
+
+            <input
+                id="user-input"
+                type="text"
+                placeholder="Ask your farming question...">
+
+            <button id="voice-btn">
+                <i class="bi bi-mic-fill"></i>
+            </button>
+
+            <button id="image-btn">
+                <i class="bi bi-image"></i>
+            </button>
+
+            <button id="send-btn">
+                <i class="bi bi-send-fill"></i>
+            </button>
+
+        </footer>
+
+    </main>
 
 </div>
 
