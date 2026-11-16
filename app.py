@@ -3,6 +3,7 @@ from chatbot import get_response
 
 app = Flask(__name__)
 
+
 @app.route("/")
 def home():
     return render_template("index.html")
@@ -15,7 +16,9 @@ def chat():
 
     user_message = data["message"]
 
-    bot_response = get_response(user_message)
+    language = data["language"]
+
+    bot_response = get_response(user_message, language)
 
     return jsonify({
         "response": bot_response

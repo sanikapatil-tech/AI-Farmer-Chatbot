@@ -1,6 +1,7 @@
 const sendBtn = document.getElementById("send-btn");
 const input = document.getElementById("user-input");
 const chatBox = document.getElementById("chat-box");
+const language = document.getElementById("language");
 
 sendBtn.addEventListener("click", sendMessage);
 
@@ -96,7 +97,8 @@ async function sendMessage(){
         },
 
         body:JSON.stringify({
-            message:question
+            message:question,
+            language:language.value
         })
 
     });

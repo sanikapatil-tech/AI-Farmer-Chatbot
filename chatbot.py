@@ -1,21 +1,27 @@
-def get_response(user_message):
+import json
 
-    user_message = user_message.lower()
 
-    if "hello" in user_message or "hi" in user_message:
-        return "Hello Farmer! 👋 How can I help you today?"
+with open("data/knowledge.json", "r", encoding="utf-8") as file:
+    knowledge = json.load(file)
 
-    elif "wheat" in user_message:
-        return "Wheat grows best in cool weather with well-drained soil."
 
-    elif "rice" in user_message:
-        return "Rice requires plenty of water and fertile soil."
+def get_response(message, language):
 
-    elif "fertilizer" in user_message:
-        return "Please tell me the crop name so I can recommend a fertilizer."
+    message = message.lower()
 
-    elif "weather" in user_message:
-        return "Weather API will be integrated in the next version."
+    for crop in knowledge.values():
+
+        for keyword in crop["keywords"]:
+
+            if keyword.lower() in message:
+
+                return crop[language]
+
+    if language == "mr":
+        return "क्षमस्व 🙏, माझ्याकडे या प्रश्नाचे उत्तर सध्या उपलब्ध नाही."
+
+    elif language == "hi":
+        return "क्षमा करें 🙏, मेरे पास इस प्रश्न का उत्तर अभी उपलब्ध नहीं है."
 
     else:
-        return "Sorry, I don't understand. Gemini AI will answer this in the next version."
+        return "Sorry 🙏, I don't have an answer for this question yet."
